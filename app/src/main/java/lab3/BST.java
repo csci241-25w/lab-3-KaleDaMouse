@@ -12,7 +12,15 @@ public class BST {
     /* return true iff Node n is a leaf node. a null node is not considered
      * a leaf. */
     public boolean isLeaf(Node n) {
-        return false; //TODO
+        if (n == null) {
+            return false; 
+        }
+        if (n.left == null && n.right == null) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     /** return the number of nodes in the tree */
@@ -24,36 +32,60 @@ public class BST {
      * = 0 if n is null
      * = 1 + number of nodes in left + number of nodes in right */
     private int size(Node n) {
-        return 0; // TODO
+        if (n == null) {
+            return 0;
+        }
+        return 1 + size(n.left) + size(n.right);
     }
 
 
-    /** appends the values in the tree to String traversal using an in-order traversal */
+    /** appends the values in the tree to String traversal using an in-order traversal 
+     * 
+     * values appended from the left child, then root, then right child
+    */
     public void inOrder() {
         traversal = "";
         inOrder(root);
     }
     private void inOrder(Node n) {
-        // TODO
+    if (n == null) {
+        return ;
     }
+    inOrder(n.left);
+    traversal += n.value;
+    inOrder(n.right);
+}
 
 
-    /**  appends the values in the tree to String traversal using a pre-order traversal */
+    /**  appends the values in the tree to String traversal using a pre-order traversal 
+     * values appended from the root, then left child, then right child
+    */
     public void preOrder() {
         traversal = "";
         preOrder(root);
     }
     private void preOrder(Node n) {
-        // TODO
+        if (n == null) {
+            return ;
+        }
+        traversal += n.value;
+        preOrder(n.left);
+        preOrder(n.right);
     }
 
-    /** appends the values in the tree to String traversal using a post-order traversal */
+    /** appends the values in the tree to String traversal using a post-order traversal
+     * 
+     * values appended from the left child, then right child, then root
+     */
     public void postOrder() {
         traversal = "";
         postOrder(root);
     }
     private void postOrder(Node n) {
-        //TODO
+        if (n == null) {
+            return ;
+        }
+        postOrder(n.left); postOrder(n.right); traversal += n.value;
     }
 
     /** return the height of the tree.
@@ -64,9 +96,14 @@ public class BST {
         return height(root);
     }
 
-    /* return the height of the tree rooted at n */
+    /* return the height of the tree rooted at n 
+    recursive definition:
+     */
     private int height(Node n) {
-        return 0; // TODO
+        if (n == null) {
+            return -1;
+        }
+        return 1 + Math.max(height(n.left), height(n.right));
     }
 
     /** inner class representing a node in the tree. */
