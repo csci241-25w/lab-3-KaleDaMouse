@@ -12,7 +12,7 @@ public class Recursion {
    *   len(s) = 1 + len(s[1..] otherwise */
   public static int len(String s) {
     // TODO: replace true with the correct base case condition
-    if (true) {
+    if (s.isEmpty()) {
       return 0;
     }
     return 1 + len(s.substring(1));
@@ -26,7 +26,14 @@ public class Recursion {
    *        countE(s[1:] otherwise
    */
   public static int countE(String s)  {
-      return 0; // TODO
+    if (len(s) == 0) {
+      return 0;
+  }
+  if (s.charAt(0) == 'e') {
+      return 1 + countE(s.substring(1));
+  } else {
+      return countE(s.substring(1));
+  }
   }
 
 
